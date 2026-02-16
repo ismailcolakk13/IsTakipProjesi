@@ -1,0 +1,173 @@
+/* --- TEMEL AYARLAR --- */
+:root {
+  --primary-color: #2563eb; /* Kurumsal Mavi */
+  --success-color: #16a34a; /* Yeşil */
+  --danger-color: #dc2626;  /* Kırmızı */
+  --bg-color: #f3f4f6;      /* Açık Gri Arkaplan */
+  --card-bg: #ffffff;       /* Beyaz Kartlar */
+  --text-dark: #1f2937;     /* Koyu Gri Yazı */
+  --text-light: #6b7280;    /* Açık Gri Yazı */
+  --border-radius: 12px;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-dark);
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* --- ANA KONTEYNER --- */
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin: 40px 20px;
+}
+
+/* --- DURUM KARTI (SPRINT BİLGİSİ) --- */
+.status-card {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+  text-align: center;
+  border-left: 6px solid #ccc;
+}
+
+.status-card.active {
+  border-left-color: var(--success-color);
+  background-color: #f0fdf4; /* Çok açık yeşil */
+}
+
+.status-card.inactive {
+  border-left-color: var(--danger-color);
+  background-color: #fef2f2; /* Çok açık kırmızı */
+}
+
+.status-card h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--text-dark);
+}
+
+.status-card p {
+  margin: 8px 0 0;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+/* --- IZGARA YAPISI (GRID) --- */
+.grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .grid-layout {
+    grid-template-columns: 1fr; /* Mobilde alt alta */
+  }
+}
+
+/* --- KART TASARIMLARI --- */
+.card {
+  background: var(--card-bg);
+  padding: 24px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.card h3 {
+  margin-top: 0;
+  color: var(--primary-color);
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+
+/* --- FORM ELEMANLARI --- */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+input {
+  padding: 12px;
+  border: 1px solid #e5e7eb; /* Daha narin, açık gri çerçeve */
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: #ffffff; /* ARKA PLANI KESİN OLARAK BEYAZ YAPAR */
+  color: #1f2937;            /* Yazı rengi net koyu gri */
+  transition: all 0.2s;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary-color); /* Odaklanınca mavi çerçeve */
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); /* Tıklayınca hafif mavi parıltı */
+}
+
+input::placeholder {
+  color: #9ca3af; /* Placeholder yazısı daha silik */
+}
+
+label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-light);
+  margin-bottom: -8px;
+}
+
+/* --- BUTONLAR --- */
+.btn {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  color: white;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn-primary { background-color: var(--primary-color); }
+.btn-success { background-color: var(--success-color); }
+
+/* --- LİSTE TASARIMI --- */
+.employee-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.employee-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.employee-item:last-child {
+  border-bottom: none;
+}
+
+.emp-name {
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.emp-details {
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
