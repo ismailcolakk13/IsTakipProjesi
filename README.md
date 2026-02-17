@@ -15,7 +15,7 @@ Sprintler oluşturulabilir. Çalışanlar bu sprintlerde sağladıkları katkıl
 
 #### Backend
 
-    cd ./IsTakıp.API
+    cd ./IsTakip.API
     dotnet restore
     dotnet tool install --global dotnet-ef        (yüklü değilse bu satırı çalıştır)
     dotnet ef database update
