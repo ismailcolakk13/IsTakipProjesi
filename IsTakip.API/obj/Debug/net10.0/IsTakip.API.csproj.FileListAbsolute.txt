@@ -123,3 +123,4 @@ C:\Users\ismai\Desktop\Kodlar\turkcell\IsTakipProjesi\IsTakip.API\obj\Debug\net1
 C:\Users\ismai\Desktop\Kodlar\turkcell\IsTakipProjesi\IsTakip.API\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\ismai\Desktop\Kodlar\turkcell\IsTakipProjesi\IsTakip.API\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\ismai\Desktop\Kodlar\turkcell\IsTakipProjesi\IsTakip.API\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\ismai\Desktop\Kodlar\turkcell\IsTakipProjesi\IsTakip.API\obj\Debug\net10.0\IsTakip.API.sourcelink.json

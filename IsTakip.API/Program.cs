@@ -28,11 +28,10 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // 4. Swagger arayüzünü açıyoruz
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// if (app.Environment.IsDevelopment())
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
@@ -42,5 +41,13 @@ app.UseAuthorization();
 
 // 5. Controller'ları haritalıyoruz (Burası EKSİKTİ)
 app.MapControllers();
+
+// --- OTOMATİK MIGRATION (BU KISIM YENİ) ---
+// Uygulama her başladığında veritabanını kontrol eder ve eksik tablo varsa oluşturur.
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate();
+}
 
 app.Run();
