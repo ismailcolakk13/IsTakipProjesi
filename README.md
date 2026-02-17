@@ -1,8 +1,12 @@
-## **Çalışanların verimliliğini takip edip arttırabileceği bir uygulama.**
+## **Çalışanların Verimliliğini Takip Edip Arttırabileceği Bir Uygulama.**
 
-Çalıştırmak için:
+Docker ile Çalıştırmak için: (önerilir)
 
-!!PostgreSQL veritabanı kullanır bağlantıyı appsetings.json dosyasından ayarlamanız gerekmektedir.
+    docker-compose up --build
+
+Localde Çalıştırmak için:
+
+**!!PostgreSQL veritabanı kullanır bağlantıyı appsetings.json dosyasından ayarlamanız gerekmektedir**.
 
 Backend:
 
