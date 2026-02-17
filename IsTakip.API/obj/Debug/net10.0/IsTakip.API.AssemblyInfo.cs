@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IsTakip.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8c144105844b716b025240e88f5fa1133b405924")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2bdcc317da9de6ef03cb841785653f0cbf867816")]
 [assembly: System.Reflection.AssemblyProductAttribute("IsTakip.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IsTakip.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

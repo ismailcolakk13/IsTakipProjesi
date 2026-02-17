@@ -35,7 +35,7 @@ services:
     depends_on:
       - api
     ports:
-      - "3000:80" # Tarayıcıda localhost:3000'de çalışacak
+      - "5173:80" # Tarayıcıda localhost:3000'de çalışacak
 
 volumes:
   postgres_data:
