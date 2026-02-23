@@ -256,7 +256,7 @@ function App() {
       {/* Container: Max width 7xl (~1280px), ortalanmış */}
       <div className="max-w-7xl mx-auto space-y-6">
         {/* --- HEADER --- */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-l-4 border-blue-600">
+        <div className="bg-white rounded-xl shadow-sm p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-l-4 border-blue-600">
           {/* Sol Taraf: Başlık ve Seçim */}
           <div className="flex flex-col md:flex-row items-start md:items-center gap-4 w-full md:w-auto">
             <h1 className="text-2xl font-bold text-blue-900 tracking-tight">
@@ -477,7 +477,7 @@ function App() {
                     </div>
                   </div>
 
-                  <div className="w-full h-[350px]">
+                  <div className="w-full" style={{ height: 350 }}>
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart
                         data={employees.map((emp) => ({
@@ -540,13 +540,13 @@ function App() {
                     <table className="w-full text-sm text-left">
                       <thead className="text-xs text-gray-500 uppercase bg-gray-50 border-b border-gray-200">
                         <tr>
-                          <th className="px-4 py-4 font-bold text-gray-600 min-w-[150px]">
+                          <th className="px-4 py-4 font-bold text-gray-600">
                             Çalışan Adı
                           </th>
                           {days.map((day, i) => (
                             <th
                               key={day.toISOString()}
-                              className={`px-2 py-3 text-center border-l border-gray-100 min-w-[60px] ${isWeekend(day) ? "bg-red-50 text-red-800" : ""}`}
+                              className={`px-2 py-3 text-center border-l border-gray-100 ${isWeekend(day) ? "bg-red-50 text-red-800" : ""}`}
                             >
                               <div className="font-bold text-sm">
                                 {day.toLocaleDateString("tr-TR", {
@@ -560,7 +560,7 @@ function App() {
                               </div>
                             </th>
                           ))}
-                          <th className="px-4 py-4 text-center bg-blue-50 text-blue-700 border-l border-blue-100 min-w-[80px]">
+                          <th className="px-4 py-4 text-center bg-blue-50 text-blue-700 border-l border-blue-100">
                             TOPLAM
                           </th>
                         </tr>
