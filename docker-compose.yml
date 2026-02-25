@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  # 1. VERİTABANI (PostgreSQL)
+  # 1. VERİTABANI (PostgreSQL) — Sadece iç ağda erişilebilir
   db:
     image: postgres:16-alpine
     container_name: istakip_db
@@ -9,33 +9,30 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: test1234
       POSTGRES_DB: IsTakipDb
-    ports:
-      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  # 2. BACKEND API (.NET)
+  # 2. BACKEND API (.NET) — Sadece iç ağda erişilebilir
   api:
     build: ./IsTakip.API
     container_name: istakip_api
-    restart:  on-failure
+    restart: on-failure
     depends_on:
       - db
     environment:
-      # DİKKAT: Host=localhost değil, Host=db (servis adı) olmalı!
       ConnectionStrings__DefaultConnection: "Host=db;Port=5432;Database=IsTakipDb;Username=postgres;Password=test1234"
       ASPNETCORE_URLS: "http://+:8080"
-    ports:
-      - "5090:8080" # Dışarıdan 5090, içeriden 8080
+    expose:
+      - "8080"
 
-  # 3. FRONTEND (React)
+  # 3. FRONTEND (React + Nginx Reverse Proxy) — Tek public port
   ui:
     build: ./IsTakip.UI
     container_name: istakip_ui
     depends_on:
       - api
     ports:
-      - "5173:80" # Tarayıcıda localhost:3000'de çalışacak
+      - "80:80"
 
 volumes:
   postgres_data:
