@@ -7,7 +7,7 @@ services:
     container_name: istakip_db
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: test1234
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: IsTakipDb
     volumes:
       - postgres_data:/var/lib/postgresql/data
@@ -20,7 +20,7 @@ services:
     depends_on:
       - db
     environment:
-      ConnectionStrings__DefaultConnection: "Host=db;Port=5432;Database=IsTakipDb;Username=postgres;Password=test1234"
+      ConnectionStrings__DefaultConnection: "Host=db;Port=5432;Database=IsTakipDb;Username=postgres;Password=${DB_PASSWORD}"
       ASPNETCORE_URLS: "http://+:8080"
     expose:
       - "8080"

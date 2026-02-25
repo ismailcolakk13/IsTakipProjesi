@@ -8,5 +8,8 @@ namespace IsTakip.API.Models
         public string Email { get; set; } = string.Empty;
         public string Phone { get; set; } = string.Empty;
         public DateTime StartDate { get; set; } = DateTime.UtcNow;
+
+        // Soft Delete: Çalışan ayrıldığında true → false yapılır, kayıtlar korunur
+        public bool IsActive { get; set; } = true;
     }
 }

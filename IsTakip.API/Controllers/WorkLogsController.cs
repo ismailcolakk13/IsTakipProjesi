@@ -20,6 +20,7 @@ namespace IsTakip.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WorkLog>>> GetWorkLogs(DateTime start, DateTime end)
         {
+            if (start > end) return BadRequest("Başlangıç tarihi bitiş tarihinden sonra olamaz!");
             // Tarihleri UTC'ye çevirip karşılaştıralım ki saat farkı sorunu olmasın
             return await _context.WorkLogs
                 .Where(w => w.Date >= start && w.Date <= end)
@@ -30,8 +31,12 @@ namespace IsTakip.API.Controllers
         [HttpPost]
         public async Task<ActionResult> SaveWorkLog(WorkLog log)
         {
+            if (log.Hours < 0 || log.Hours > 24)
+            {
+                return BadRequest("Efor 0 ile 24 saat arasında olmalıdır!");
+            }
             // Tarihin saat kısmını sıfırla (Sadece gün önemli)
-            var logDate = log.Date.Date; 
+            var logDate = log.Date.Date;
             log.Date = DateTime.SpecifyKind(logDate, DateTimeKind.Utc);
 
             // Bu kişi, bu tarihte daha önce efor girmiş mi?
@@ -51,7 +56,7 @@ namespace IsTakip.API.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return Ok();
+            return Ok(existingLog ?? log);
         }
     }
 }

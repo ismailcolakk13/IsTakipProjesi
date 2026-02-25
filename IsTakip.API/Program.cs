@@ -8,7 +8,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowReactApp",
         policy =>
         {
-            policy.AllowAnyOrigin()   // Şimdilik herkese izin ver (Test için)
+            policy.WithOrigins("http://istakip.duckdns.org")   // Sadece domain izni
                   .AllowAnyMethod()   // GET, POST, PUT, DELETE hepsine izin ver
                   .AllowAnyHeader();  // Tüm başlıklara izin ver
         });
@@ -28,10 +28,11 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // 4. Swagger arayüzünü açıyoruz
-// if (app.Environment.IsDevelopment())
-
-app.UseSwagger();
-app.UseSwaggerUI();
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 // app.UseHttpsRedirection(); // HTTP only (DuckDNS, SSL henüz yok)
 
@@ -47,7 +48,20 @@ app.MapControllers();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.Migrate();
+    var retries = 5;
+    while (retries > 0)
+    {
+        try
+        {
+            db.Database.Migrate();
+            break;
+        }
+        catch
+        {
+            retries--;
+            Thread.Sleep(3000);
+        }
+    }
 }
 
 app.Run();

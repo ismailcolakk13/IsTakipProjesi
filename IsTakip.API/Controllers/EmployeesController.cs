@@ -16,11 +16,14 @@ namespace IsTakip.API.Controllers
             _context = context;
         }
 
-        // GET: api/Employees (Tüm çalışanları getir)
+        // GET: api/Employees (Aktif çalışanları getir, ?includeInactive=true ile hepsini getir)
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Employee>>> GetEmployees()
+        public async Task<ActionResult<IEnumerable<Employee>>> GetEmployees([FromQuery] bool includeInactive = false)
         {
-            return await _context.Employees.ToListAsync();
+            if (includeInactive)
+                return await _context.Employees.ToListAsync();
+
+            return await _context.Employees.Where(e => e.IsActive).ToListAsync();
         }
 
         // GET: api/Employees/5 (ID'ye göre tek çalışan getir)
@@ -77,7 +80,7 @@ namespace IsTakip.API.Controllers
             return NoContent();
         }
 
-        // DELETE: api/Employees/5 (Çalışan sil)
+        // DELETE: api/Employees/5 (Soft Delete — Çalışanı pasif yap, WorkLog'lar korunsun)
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEmployee(int id)
         {
@@ -87,7 +90,8 @@ namespace IsTakip.API.Controllers
                 return NotFound();
             }
 
-            _context.Employees.Remove(employee);
+            // Soft delete: DB'den silme, sadece pasif yap
+            employee.IsActive = false;
             await _context.SaveChangesAsync();
 
             return NoContent();
