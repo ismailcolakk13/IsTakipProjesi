@@ -22,6 +22,14 @@ namespace IsTakip.API.Controllers
             return await _context.Sprints.OrderByDescending(s => s.StartDate).ToListAsync();
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Sprint>> GetSprint(int id)
+        {
+            var sprint = await _context.Sprints.FindAsync(id);
+            if (sprint == null) return NotFound();
+            return sprint;
+        }
+
         [HttpPost]
         public async Task<ActionResult<Sprint>> PostSprint(Sprint sprint)
         {

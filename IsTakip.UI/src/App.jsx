@@ -31,7 +31,7 @@ function App() {
     endDate: "",
   });
 
-  const BASE_URL = "http://localhost:5090/api";
+  const BASE_URL = "http://istakip.duckdns.org:5090/api";
 
   // --- LOGIC (Aynı Kalıyor) ---
   useEffect(() => {

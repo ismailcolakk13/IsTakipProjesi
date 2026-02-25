@@ -33,7 +33,7 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection(); // HTTP only (DuckDNS, SSL henüz yok)
 
 app.UseCors("AllowReactApp");
 
