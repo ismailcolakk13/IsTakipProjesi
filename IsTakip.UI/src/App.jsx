@@ -65,7 +65,7 @@ function App() {
 
   // --- RENDER ---
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 font-sans py-10 px-4 md:px-8">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-sans py-10 px-4 md:px-8 transition-colors duration-300">
       <div className="max-w-7xl mx-auto space-y-6">
         <Header
           sprintList={sprintList}
@@ -83,12 +83,14 @@ function App() {
         {selectedSprint && (
           <>
             {loading ? (
-              <div className="flex flex-col items-center justify-center py-20 bg-white rounded-xl shadow-sm border border-gray-200">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-4 border-blue-600 mb-4"></div>
-                <h3 className="text-lg font-semibold text-gray-600 animate-pulse">
+              <div className="flex flex-col items-center justify-center py-20 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-4 border-blue-600 dark:border-blue-400 mb-4"></div>
+                <h3 className="text-lg font-semibold text-gray-600 dark:text-slate-300 animate-pulse">
                   Veriler Getiriliyor...
                 </h3>
-                <p className="text-sm text-gray-400">Lütfen bekleyiniz</p>
+                <p className="text-sm text-gray-400 dark:text-slate-500">
+                  Lütfen bekleyiniz
+                </p>
               </div>
             ) : (
               <>
